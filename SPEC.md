@@ -88,15 +88,6 @@ Window {
 }
 ```
 
-#### Anonymous groups ####
-
-*Anonymous group*s are *group*s that don't have name:
-
-``` asdml
-{
-}
-```
-
 ### Properties ###
 
 Classes have *properties*. *Properties* have values. Let's add some *properties* to the window class:

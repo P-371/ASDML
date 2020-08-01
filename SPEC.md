@@ -88,6 +88,15 @@ Window {
 }
 ```
 
+#### Anonymous groups ####
+
+*Anonymous group*s are *group*s that don't have name:
+
+``` asdml
+{
+}
+```
+
 ### Properties ###
 
 Classes have *properties*. *Properties* have values. Let's add some *properties* to the window class:
@@ -272,7 +281,7 @@ Button #ok {
 }
 ```
 
-Primitives can't have *ID*s because the *ID* would add the *group* with that *ID* as a *nested object* there instead of giving the *ID* to the primitive
+Primitives and *anonymous group*s can't have *ID*s because the *ID* would add the *group* with that *ID* as a *nested object* there instead of giving the *ID* to the primitive/*anonymous group*
 
 ### Constructors ###
 
@@ -291,6 +300,8 @@ Window (800 600 "Hello World") #win {
 }
 ```
 
+*Anonymous group*s can't have constructors
+
 ## Whitespace and tabulation ##
 
 In ASDML, whitespace characters are separator characters. ASDML doesn't care about:
@@ -303,23 +314,24 @@ But there are some rules to keep in mind:
 
 | Position                                  | Whitespace character  | Required |
 |-------------------------------------------|-----------------------|----------|
+| Before `@`                                | Any                   | Yes      |
 | After `@`                                 | None                  | -        |
 | Before `[`                                | Any                   | No       |
 | After `[`                                 | Any                   | No       |
 | Before `]`                                | Any                   | No       |
 | After `]`                                 | Any                   | No       |
 | Between array items                       | Any                   | Yes      |
-| After group name                          | Any                   | No       |
 | Before `{`                                | Any                   | No       |
 | After `{`                                 | Any                   | No       |
 | Before `}`                                | Any                   | No       |
 | After `}`                                 | Any                   | No       |
-| After  `.`                                | None                  | -        |
+| Before `.`                                | Any                   | Yes      |
+| After `.`                                 | None                  | -        |
 | Between property name and property value  | Any                   | Yes      |
 | Between nested objects                    | Any                   | Yes      |
 | Between property name and nested objects  | Any                   | Yes      |
 | Between property value and nested objects | Any                   | Yes      |
-| Before `#`                                | Any                   | No       |
+| Before `#`                                | Any                   | Yes      |
 | After  `#`                                | None                  | -        |
 | Before `(`                                | Any                   | No       |
 | After `(`                                 | Any                   | No       |

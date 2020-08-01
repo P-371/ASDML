@@ -18,8 +18,7 @@ ASDML was inspired by the following languages, files and file formats:
 
 * nginx.conf
 * QML
-* CSS
-* JSON
+* SCSS
 
 ## Specification ##
 
@@ -33,15 +32,13 @@ Extended language features are available
 
 ## Extensions For IDEs and Editors ##
 
-### Visual Studio Code ###
-
-* [P-371/ASDML](src/VSCodeExtension) (official)
+* Coming soon
 
 ## Libraries ##
 
 ### C# ###
 
-* [P-371/ASDML.NET](src/ASDML.NET) (official)
+* [P-371/ASDML.NET](https://github.com/P-371/ASDML.NET) (official)
 
 ## Submission ##
 

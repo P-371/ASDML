@@ -1,3 +1,0 @@
-# ASDML&#46;NET #
-
-WIP

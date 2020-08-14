@@ -38,8 +38,9 @@ In most languages, *text literal*s refer to `string`s. *Text literal*s are writt
 
 *Simple text literal*s are *text literal*s. They:
 
-* can not contain whitespace or the following characters: `"()[]{}`
-* do not begin with a digit or the following characters: `@#+-.`
+* can contain only letters, digits and following characters: `._+-`
+* begin with a letter or the following characters: `_`
+* do not contain `\` or escape sequence
 
 *Simple text literal*s do not have quotation marks: `Hello`
 

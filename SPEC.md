@@ -1,7 +1,5 @@
 # Language Specification #
 
-⚠️ This repo is WIP and subject to changes
-
 The examples are written in a hybrid C#-JavaScript-like language. All members are public.
 
 ## Keywords ##

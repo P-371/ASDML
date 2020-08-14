@@ -10,11 +10,11 @@ In ASDML, all keywords are prefixed by `@`.
 
 ### Null literal ###
 
-Null means something has no valid value. In ASDML, the null keyword is `@null`.
+Null means something has no valid value. In ASDML, the null keyword is `@null` in any case. Therefore bot `@Null` and `@NuLl` are valid.
 
 ### Logical literals ###
 
-In most languages, this is `bool` or `boolean`. There are two logical keywords: `@true` and `@false`.
+In most languages, this is `bool` or `boolean`. There are two logical keywords: `@true` and `@false`. The case does not matter just like at `@null`
 
 ### Number literals ###
 

@@ -34,6 +34,28 @@ Numbers are character sequences matching `^[\+-]?\d+(\.\d+)?([Ee][\+-]\d+)?$` re
 
 In most languages, *text literal*s refer to `string`s. *Text literal*s are written between quotation marks: `"Hello World"`.
 
+#### Escape sequences ####
+
+| Escape sequence | Character        |
+|-----------------|------------------|
+| `\"`            | `"`              |
+| `\#`            | `#`              |
+| `\\`            | `\`              |
+|                 |                  |
+| `\0`            | Null character   |
+| `\a`            | Alert            |
+| `\b`            | Backspace        |
+| `\f`            | Form feed        |
+| `\n`            | Line feed        |
+| `\r`            | Carriage return  |
+| `\t`            | Horizontal tab   |
+| `\v`            | Vertical tab     |
+|                 |                  |
+| `\x??` *        | Hexadecimal form |
+| `\u????` *      | Unicode sequence |
+
+\* replace `?`s with numbers
+
 #### Simple text literals ####
 
 *Simple text literal*s are *text literal*s. They:

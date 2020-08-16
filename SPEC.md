@@ -1,5 +1,7 @@
 # Language Specification #
 
+![Specification: v1.1.0](https://img.shields.io/badge/Specification-v1.1.0-blue)
+
 The examples are written in a hybrid C#-JavaScript-like language. All members are public.
 
 ## Keywords ##
@@ -72,7 +74,7 @@ In most languages, *text literal*s refer to `string`s. *Text literal*s are writt
 
 ``` asdml
 @"This is a
-multiline text literal"
+Multiline Text Literal"
 ```
 
 ### Array literals ###
@@ -106,6 +108,24 @@ This very basic window looks like this in ASDML:
 
 ``` asdml
 Window {
+}
+```
+
+#### Generic groups ###
+
+*Group*s can have generic parameters, like a generic dictionary:
+
+``` csharp
+class Dictionary<Key, Value> {
+}
+
+Dictionary<Key, Value> dictionary = new Dictionary<Key, Value>();
+```
+
+Generic parameters are written between `<` and `>` characters and separated with whitespace characters from each other, so the `dictionary` object looks like this in ASDML:
+
+``` asdml
+Dictionary<Key Value> {
 }
 ```
 
@@ -337,6 +357,11 @@ But there are some rules to keep in mind:
 | After `{`                                 | Any                   | No       |
 | Before `}`                                | Any                   | No       |
 | After `}`                                 | Any                   | No       |
+| Before `<`                                | Any                   | No       |
+| After `<`                                 | Any                   | No       |
+| Before `>`                                | Any                   | No       |
+| After `>`                                 | Any                   | No       |
+| Between generic parameters                | Any                   | Yes      |
 | Before `.`                                | Any                   | Yes      |
 | After `.`                                 | None                  | -        |
 | Between property name and property value  | Any                   | Yes      |

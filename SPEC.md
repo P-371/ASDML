@@ -109,6 +109,24 @@ Window {
 }
 ```
 
+#### Generic groups ###
+
+*Group*s can have generic parameters, like a generic dictionary:
+
+``` csharp
+class Dictionary<Key, Value> {
+}
+
+Dictionary<Key, Value> dictionary = new Dictionary<Key, Value>();
+```
+
+Generic parameters are written between `<` and `>` characters and separated with whitespace characters from each other, so the `dictionary` object looks like this in ASDML:
+
+``` asdml
+Dictionary<Key Value> {
+}
+```
+
 ### Properties ###
 
 Classes have *properties*. *Properties* have values. Let's add some *properties* to the window class:
@@ -337,6 +355,11 @@ But there are some rules to keep in mind:
 | After `{`                                 | Any                   | No       |
 | Before `}`                                | Any                   | No       |
 | After `}`                                 | Any                   | No       |
+| Before `<`                                | Any                   | No       |
+| After `<`                                 | Any                   | No       |
+| Before `>`                                | Any                   | No       |
+| After `>`                                 | Any                   | No       |
+| Between generic parameters                | Any                   | Yes      |
 | Before `.`                                | Any                   | Yes      |
 | After `.`                                 | None                  | -        |
 | Between property name and property value  | Any                   | Yes      |

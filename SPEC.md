@@ -1,5 +1,7 @@
 # Language Specification #
 
+![Specification: v1.1.0](https://img.shields.io/badge/Specification-v1.1.0-blue)
+
 The examples are written in a hybrid C#-JavaScript-like language. All members are public.
 
 ## Keywords ##

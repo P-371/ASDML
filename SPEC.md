@@ -72,7 +72,7 @@ In most languages, *text literal*s refer to `string`s. *Text literal*s are writt
 
 ``` asdml
 @"This is a
-multiline text literal"
+Multiline Text Literal"
 ```
 
 ### Array literals ###

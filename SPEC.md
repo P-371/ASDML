@@ -79,17 +79,72 @@ Multiline Text Literal"
 
 ### Array literals ###
 
-*Array literal*s are collections of objects. The items of an *array* are written between `[` and `]` characters and separated with whitespace characters from each other: `[4 2 42]`
+*Array literal*s are collections of objects. The items of an *array* are written between `@[` and `]` characters and separated with whitespace characters from each other: `@[4 2 42]`
+
+Arrays of ASDML Primitives should not specify types.
 
 Arrays can be multiline:
 
 ``` asdml
-[
+@[
   4
   2
   42
 ]
 ```
+
+Arrays can be empty: `@[]`
+
+Arrays can have types. Arrays with types omit `@`
+
+``` csharp
+class Fruit {
+}
+class Pear : Fruit {
+}
+
+Fruit[] fruits = new Fruit[] { new Fruit(), new Fruit() };
+Pear[] pears = new Pear[] { new Pear(), new Pear() };
+```
+
+These *array*s look like this in ASDML with types:
+
+``` asdml
+Fruit [
+  Fruit { }
+  Fruit { }
+]
+Pear [
+  Pear { }
+  Pear { }
+]
+```
+
+...and without types:
+
+``` asdml
+@[
+  Fruit { }
+  Fruit { }
+]
+@[
+  Pear { }
+  Pear { }
+]
+```
+
+Things start to get interesting in the following case:
+
+``` csharp
+class Fruit {
+}
+class Pear : Fruit {
+}
+
+Fruit[] fruits = new Pear[] { new Pear(), new Pear() };
+```
+
+One can't put a fruit in `fruits` because it's an array of pears! One can tell the actual array type in ASDML, but it isn't necessary. If the type isn't given, the type information will be unknown.
 
 ## Basic syntax ##
 

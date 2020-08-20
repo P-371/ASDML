@@ -184,6 +184,19 @@ Dictionary<Key Value> {
 }
 ```
 
+#### Anonymous groups ####
+
+*Anonymous group*s are *group*s that don't have name, a `@` is written instead:
+
+``` asdml
+@{
+}
+```
+
+*Anonymous group*s can't be generic and can't have constructor.
+
+In this case, the type is unknown. It can be a problem, when the type defined is abstract or is an interface. It is the parser's job to find a suitable type.
+
 ### Properties ###
 
 Classes have *properties*. *Properties* have values. Let's add some *properties* to the window class:

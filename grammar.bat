@@ -1,3 +1,8 @@
+: ###############################################################################################
+: # This is an utility file for the grammar file(s).                                            #
+: # It detects your operating system and executes the appropriate code.                         #
+: # Please make sure that both Java and ANTLR are set up correctly and are in PATH or CLASSPATH #
+: ###############################################################################################
 : '"
 @echo off
 echo.

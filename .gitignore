@@ -14,4 +14,8 @@
 # Ignore all local history of files
 .history
 
+### ANTLR ###
+Grammar/*
+!Grammar/*.g4
+
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode

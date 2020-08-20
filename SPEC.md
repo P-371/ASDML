@@ -1,6 +1,6 @@
 # Language Specification #
 
-![Specification: v1.1.0](https://img.shields.io/badge/Specification-v1.1.0-blue)
+![Specification: v2.0.0](https://img.shields.io/badge/Specification-v2.0.0-blue)
 
 The examples are written in a hybrid C#-JavaScript-like language. All members are public.
 
@@ -12,7 +12,7 @@ In ASDML, all keywords are prefixed by `@`.
 
 ### Null literal ###
 
-Null means something has no valid value. In ASDML, the null keyword is `@null` in any case. Therefore bot `@Null` and `@NuLl` are valid.
+Null means something has no valid value. In ASDML, the null keyword is `@null` in any case. Therefore both `@Null` and `@NuLl` are valid for example.
 
 ### Logical literals ###
 
@@ -79,23 +79,78 @@ Multiline Text Literal"
 
 ### Array literals ###
 
-*Array literal*s are collections of objects. The items of an *array* are written between `[` and `]` characters and separated with whitespace characters from each other: `[4 2 42]`
+*Array literal*s are collections of objects. The items of an *array* are written between `@[` and `]` characters and separated with whitespace characters from each other: `@[4 2 42]`
+
+Arrays of ASDML Primitives should not specify types.
 
 Arrays can be multiline:
 
 ``` asdml
-[
+@[
   4
   2
   42
 ]
 ```
 
-## Basic syntax ##
+Arrays can be empty: `@[]`
+
+Arrays can have types. Arrays with types omit `@`
+
+``` csharp
+class Fruit {
+}
+class Pear : Fruit {
+}
+
+Fruit[] fruits = new Fruit[] { new Fruit(), new Fruit() };
+Pear[] pears = new Pear[] { new Pear(), new Pear() };
+```
+
+These *array*s look like this in ASDML with types:
+
+``` asdml
+Fruit [
+  Fruit { }
+  Fruit { }
+]
+Pear [
+  Pear { }
+  Pear { }
+]
+```
+
+...and without types:
+
+``` asdml
+@[
+  Fruit { }
+  Fruit { }
+]
+@[
+  Pear { }
+  Pear { }
+]
+```
+
+Things start to get interesting in the following case:
+
+``` csharp
+class Fruit {
+}
+class Pear : Fruit {
+}
+
+Fruit[] fruits = new Pear[] { new Pear(), new Pear() };
+```
+
+One can't put a fruit in `fruits` because it's an array of pears! One can tell the actual array type in ASDML, but it isn't necessary. If the type isn't given, the type information will be unknown.
+
+## Language elements ##
 
 ### Groups ###
 
-In ASDML, *group*s refer to objects or classes in programming languages. *Group* names must be *simple text literal*s. The *group* name is followed by `{` . Let's create an empty window class:
+In ASDML, *group*s refer to objects or classes in programming languages. *Group* names must be *simple text literal*s (see [naming conventions](#naming-conventions)). The *group* name is followed by `{` and the *group* is closed by `}`. Let's create an empty window class:
 
 ``` csharp
 class Window {
@@ -129,6 +184,19 @@ Dictionary<Key Value> {
 }
 ```
 
+#### Anonymous groups ####
+
+*Anonymous group*s are *group*s that don't have name, a `@` is written instead:
+
+``` asdml
+@{
+}
+```
+
+*Anonymous group*s can't be generic and can't have constructor.
+
+In this case, the type is unknown. It can be a problem, when the type defined is abstract or is an interface. It is the parser's job to find a suitable type.
+
 ### Properties ###
 
 Classes have *properties*. *Properties* have values. Let's add some *properties* to the window class:
@@ -144,7 +212,7 @@ window.Width = 800;
 window.Height = 600;
 ```
 
-In ASDML, *properties* start with a period character. *Property* names must be *simple text literal*s. Property names are followed by the property value. The `window` object looks like this in ASDML:
+In ASDML, *properties* start with a `.` character. *Property* names must be *simple text literal*s (see [naming conventions](#naming-conventions)). Property names are followed by the property value. The `window` object looks like this in ASDML:
 
 ``` asdml
 Window {
@@ -184,6 +252,22 @@ Window {
   }
 }
 ```
+
+#### Top-level properties ####
+
+*Top-level properties* are *properties* that aren't located in a *group*:
+
+``` asdml
+.TopLevel1 "This is a top-level property"
+.TopLevel2 "This is another"
+
+Group {
+  .Property1 "This isn't a top-level property"
+  .Property2 "Neither is this"
+}
+```
+
+*Top-level properties* have special meanings. This can control, for example, how the parser or transpiler works, lets one import things and so on. See [special top-level properties](#special-top-level-properties)
 
 ### Nested content ###
 
@@ -244,7 +328,7 @@ Window {
 
 ### IDs ###
 
-*Group*s can have *ID*s to reference them at multiple locations or find them easily. *ID*s must be *simple text literal*s. *ID*s are written after the *group* name prefixed by `#`
+*Group*s can have *ID*s to reference them at multiple locations or find them easily. *ID*s must be *simple text literal*s (see [naming conventions](#naming-conventions)). *ID*s are written after the *group* name prefixed by `#`
 
 ``` asdml
 Window #win {
@@ -334,6 +418,18 @@ Window (800 600 "Hello World") #win {
 
 *Anonymous group*s can't have constructors
 
+## Special top-level properties ##
+
+Special top-level properties are case-insensitive but should follow [naming conventions](#naming-conventions)
+
+### Imports ###
+
+Syntax: `.Imports @[ "/path/to/first.asdml" "/path/to/second.asdml" ]`
+
+Type: `Text[]` (array type shouldn't be specified)
+
+Other ASDML files can be imported and used. This allows one to access references and groups in imported files. Array items can be relative path, absolute path or URI and are case-sensitive.
+
 ## Whitespace and tabulation ##
 
 In ASDML, whitespace characters are separator characters. ASDML doesn't care about:
@@ -375,3 +471,8 @@ But there are some rules to keep in mind:
 | Before `)`                                | Any                   | No       |
 | After `)`                                 | Any                   | No       |
 | Between constructor parameters            | Any                   | Yes      |
+
+## Naming conventions ##
+
+* *Property* names and *Group* names should be PascalCase
+* *ID*s should be camelCase

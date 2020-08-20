@@ -12,7 +12,7 @@ In ASDML, all keywords are prefixed by `@`.
 
 ### Null literal ###
 
-Null means something has no valid value. In ASDML, the null keyword is `@null` in any case. Therefore bot `@Null` and `@NuLl` are valid.
+Null means something has no valid value. In ASDML, the null keyword is `@null` in any case. Therefore both `@Null` and `@NuLl` are valid for example.
 
 ### Logical literals ###
 

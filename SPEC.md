@@ -253,6 +253,22 @@ Window {
 }
 ```
 
+#### Top-level properties ####
+
+*Top-level properties* are *properties* that aren't located in a *group*:
+
+``` asdml
+.TopLevel1 "This is a top-level property"
+.TopLevel2 "This is another"
+
+Group {
+  .Property1 "This isn't a top-level property"
+  .Property2 "Neither is this"
+}
+```
+
+*Top-level properties* have special meanings. This can control, for example, how the parser or transpiler works, lets one import things and so on. See [special top-level properties](#special-top-level-properties)
+
 ### Nested content ###
 
 Some objects can have children or items (for example, a GUI window, arrays, lists, IEnumerable in C#, Iterable in Java).
@@ -401,6 +417,16 @@ Window (800 600 "Hello World") #win {
 ```
 
 *Anonymous group*s can't have constructors
+
+## Special top-level properties ##
+
+### Imports ###
+
+Syntax: `.Imports @[ "/path/to/first.asdml" "/path/to/second.asdml" ]`
+
+Type: `Text[]` (array type shouldn't be specified)
+
+Other ASDML files can be imported and used. This allows one to access references and groups in imported files. Array items can be relative path, absolute path or URI and are case-sensitive.
 
 ## Whitespace and tabulation ##
 
